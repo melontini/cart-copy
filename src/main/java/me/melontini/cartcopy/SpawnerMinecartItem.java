@@ -32,12 +32,12 @@ public class SpawnerMinecartItem extends MinecartItem {
         public ItemStack dispenseSilently(@NotNull BlockPointer pointer, ItemStack stack) {
             Direction direction = pointer.getBlockState().get(DispenserBlock.FACING);
             World world = pointer.getWorld();
-            double d = pointer.getX() + (double)direction.getOffsetX() * 1.125;
-            double e = Math.floor(pointer.getY()) + (double)direction.getOffsetY();
-            double f = pointer.getZ() + (double)direction.getOffsetZ() * 1.125;
+            double d = pointer.getX() + (double) direction.getOffsetX() * 1.125;
+            double e = Math.floor(pointer.getY()) + (double) direction.getOffsetY();
+            double f = pointer.getZ() + (double) direction.getOffsetZ() * 1.125;
             BlockPos blockPos = pointer.getBlockPos().offset(direction);
             BlockState blockState = world.getBlockState(blockPos);
-            RailShape railShape = blockState.getBlock() instanceof AbstractRailBlock ? blockState.get(((AbstractRailBlock)blockState.getBlock()).getShapeProperty()) : RailShape.NORTH_SOUTH;
+            RailShape railShape = blockState.getBlock() instanceof AbstractRailBlock ? blockState.get(((AbstractRailBlock) blockState.getBlock()).getShapeProperty()) : RailShape.NORTH_SOUTH;
             double k;
             if (blockState.isIn(BlockTags.RAILS)) {
                 if (railShape.isAscending()) {
@@ -51,7 +51,7 @@ public class SpawnerMinecartItem extends MinecartItem {
                 }
 
                 BlockState blockState2 = world.getBlockState(blockPos.down());
-                RailShape railShape2 = blockState2.getBlock() instanceof AbstractRailBlock ? blockState2.get(((AbstractRailBlock)blockState2.getBlock()).getShapeProperty()) : RailShape.NORTH_SOUTH;
+                RailShape railShape2 = blockState2.getBlock() instanceof AbstractRailBlock ? blockState2.get(((AbstractRailBlock) blockState2.getBlock()).getShapeProperty()) : RailShape.NORTH_SOUTH;
                 if (direction != Direction.DOWN && railShape2.isAscending()) {
                     k = -0.4;
                 } else {
@@ -63,8 +63,7 @@ public class SpawnerMinecartItem extends MinecartItem {
             SpawnerMinecartEntity spawnerMinecartEntity = (SpawnerMinecartEntity) abstractMinecartEntity;
 
             NbtCompound nbt = stack.getTag();
-            assert nbt != null : "[Cart Copy] Spawner Minecart's Nbt was null, this shouldn't be possible!";
-            if (nbt.getString("Entity") != null) {
+            if (nbt != null) if (nbt.getString("Entity") != null) {
                 spawnerMinecartEntity.logic.setEntityId(Registry.ENTITY_TYPE.get(Identifier.tryParse(nbt.getString("Entity"))));
             }
 
@@ -111,9 +110,8 @@ public class SpawnerMinecartItem extends MinecartItem {
                 SpawnerMinecartEntity spawnerMinecartEntity = (SpawnerMinecartEntity) abstractMinecartEntity;
 
                 NbtCompound nbt = stack.getTag();
-                assert nbt != null : "[Cart Copy] Spawner Minecart's Nbt was null, this shouldn't be possible!";
-                if (nbt.getString("Entity") != null) {
-                        spawnerMinecartEntity.logic.setEntityId(Registry.ENTITY_TYPE.get(Identifier.tryParse(nbt.getString("Entity"))));
+                if (nbt != null) if (nbt.getString("Entity") != null) {
+                    spawnerMinecartEntity.logic.setEntityId(Registry.ENTITY_TYPE.get(Identifier.tryParse(nbt.getString("Entity"))));
                 }
 
                 if (itemStack.hasCustomName()) {

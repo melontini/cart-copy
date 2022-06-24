@@ -79,18 +79,17 @@ public abstract class MinecartItemMixin extends Item {
                 ChestMinecartEntity chestMinecart = (ChestMinecartEntity) abstractMinecartEntity;
 
                 NbtCompound nbt = stack.getTag();
-                if (nbt != null)
-                    if (nbt.getList("Items", 10) != null) {
-                        NbtList nbtList = nbt.getList("Items", 10);
-                        for (int i = 0; i < nbtList.size(); ++i) {
-                            NbtCompound nbtCompound = nbtList.getCompound(i);
-                            int j = nbtCompound.getByte("Slot") & 255;
-                            //noinspection ConstantConditions
-                            if (j >= 0 && j < chestMinecart.size()) {
-                                chestMinecart.setStack(j, ItemStack.fromNbt(nbtCompound));
-                            }
+                if (nbt != null) if (nbt.getList("Items", 10) != null) {
+                    NbtList nbtList = nbt.getList("Items", 10);
+                    for (int i = 0; i < nbtList.size(); ++i) {
+                        NbtCompound nbtCompound = nbtList.getCompound(i);
+                        int j = nbtCompound.getByte("Slot") & 255;
+                        //noinspection ConstantConditions
+                        if (j >= 0 && j < chestMinecart.size()) {
+                            chestMinecart.setStack(j, ItemStack.fromNbt(nbtCompound));
                         }
                     }
+                }
 
 
                 if (stack.hasCustomName()) chestMinecart.setCustomName(stack.getName());
@@ -123,18 +122,17 @@ public abstract class MinecartItemMixin extends Item {
                 HopperMinecartEntity hopperMinecart = (HopperMinecartEntity) abstractMinecartEntity;
 
                 NbtCompound nbt = stack.getTag();
-                if (nbt != null)
-                    if (nbt.getList("Items", 10) != null) {
-                        NbtList nbtList = nbt.getList("Items", 10);
-                        for (int i = 0; i < nbtList.size(); ++i) {
-                            NbtCompound nbtCompound = nbtList.getCompound(i);
-                            int j = nbtCompound.getByte("Slot") & 255;
-                            //noinspection ConstantConditions
-                            if (j >= 0 && j < hopperMinecart.size()) {
-                                hopperMinecart.setStack(j, ItemStack.fromNbt(nbtCompound));
-                            }
+                if (nbt != null) if (nbt.getList("Items", 10) != null) {
+                    NbtList nbtList = nbt.getList("Items", 10);
+                    for (int i = 0; i < nbtList.size(); ++i) {
+                        NbtCompound nbtCompound = nbtList.getCompound(i);
+                        int j = nbtCompound.getByte("Slot") & 255;
+                        //noinspection ConstantConditions
+                        if (j >= 0 && j < hopperMinecart.size()) {
+                            hopperMinecart.setStack(j, ItemStack.fromNbt(nbtCompound));
                         }
                     }
+                }
 
 
                 if (stack.hasCustomName()) hopperMinecart.setCustomName(stack.getName());
@@ -168,12 +166,11 @@ public abstract class MinecartItemMixin extends Item {
 
                 NbtCompound nbt = stack.getTag();
                 //Just making sure
-                if (nbt != null)
-                    if (!(nbt.getInt("Fuel") <= 0)) {
-                        furnaceMinecart.fuel = Math.min(nbt.getInt("Fuel"), world.getGameRules().getInt(CartCopy.MAX_FURNACE_FUEL));
-                        furnaceMinecart.pushX = furnaceMinecart.getX() - blockPos.getX();
-                        furnaceMinecart.pushZ = furnaceMinecart.getZ() - blockPos.getZ();
-                    }
+                if (nbt != null) if (!(nbt.getInt("Fuel") <= 0)) {
+                    furnaceMinecart.fuel = Math.min(nbt.getInt("Fuel"), world.getGameRules().getInt(CartCopy.MAX_FURNACE_FUEL));
+                    furnaceMinecart.pushX = furnaceMinecart.getX() - blockPos.getX();
+                    furnaceMinecart.pushZ = furnaceMinecart.getZ() - blockPos.getZ();
+                }
 
 
                 if (stack.hasCustomName()) furnaceMinecart.setCustomName(stack.getName());
@@ -248,18 +245,17 @@ public abstract class MinecartItemMixin extends Item {
                     ChestMinecartEntity chestMinecart = (ChestMinecartEntity) abstractMinecartEntity;
 
                     NbtCompound nbt = stack.getTag();
-                    if (nbt != null)
-                        if (nbt.getList("Items", 10) != null) {
-                            NbtList nbtList = nbt.getList("Items", 10);
-                            for (int i = 0; i < nbtList.size(); ++i) {
-                                NbtCompound nbtCompound = nbtList.getCompound(i);
-                                int j = nbtCompound.getByte("Slot") & 255;
-                                //noinspection ConstantConditions
-                                if (j >= 0 && j < chestMinecart.size()) {
-                                    chestMinecart.setStack(j, ItemStack.fromNbt(nbtCompound));
-                                }
+                    if (nbt != null) if (nbt.getList("Items", 10) != null) {
+                        NbtList nbtList = nbt.getList("Items", 10);
+                        for (int i = 0; i < nbtList.size(); ++i) {
+                            NbtCompound nbtCompound = nbtList.getCompound(i);
+                            int j = nbtCompound.getByte("Slot") & 255;
+                            //noinspection ConstantConditions
+                            if (j >= 0 && j < chestMinecart.size()) {
+                                chestMinecart.setStack(j, ItemStack.fromNbt(nbtCompound));
                             }
                         }
+                    }
 
                     if (stack.hasCustomName()) chestMinecart.setCustomName(stack.getName());
 
@@ -279,18 +275,17 @@ public abstract class MinecartItemMixin extends Item {
                     HopperMinecartEntity hopperMinecart = (HopperMinecartEntity) abstractMinecartEntity;
 
                     NbtCompound nbt = stack.getTag();
-                    if (nbt != null)
-                        if (nbt.getList("Items", 10) != null) {
-                            NbtList nbtList = nbt.getList("Items", 10);
-                            for (int i = 0; i < nbtList.size(); ++i) {
-                                NbtCompound nbtCompound = nbtList.getCompound(i);
-                                int j = nbtCompound.getByte("Slot") & 255;
-                                //noinspection ConstantConditions
-                                if (j >= 0 && j < hopperMinecart.size()) {
-                                    hopperMinecart.setStack(j, ItemStack.fromNbt(nbtCompound));
-                                }
+                    if (nbt != null) if (nbt.getList("Items", 10) != null) {
+                        NbtList nbtList = nbt.getList("Items", 10);
+                        for (int i = 0; i < nbtList.size(); ++i) {
+                            NbtCompound nbtCompound = nbtList.getCompound(i);
+                            int j = nbtCompound.getByte("Slot") & 255;
+                            //noinspection ConstantConditions
+                            if (j >= 0 && j < hopperMinecart.size()) {
+                                hopperMinecart.setStack(j, ItemStack.fromNbt(nbtCompound));
                             }
                         }
+                    }
 
                     if (stack.hasCustomName()) hopperMinecart.setCustomName(stack.getName());
 
@@ -367,15 +362,9 @@ public abstract class MinecartItemMixin extends Item {
                         spawnerMinecart.setTag(nbtCompound);
 
                         if (stack.hasCustomName()) {
-                            spawnerMinecart.setCustomName(
-                                    new TranslatableText("item.cart-copy.spawner_minecart.filled.custom",
-                                            stack.getName(), Registry.ENTITY_TYPE.get(mobSpawnerBlockEntity.logic.getEntityId()).getName())
-                                            .formatted(Formatting.RESET));
+                            spawnerMinecart.setCustomName(new TranslatableText("item.cart-copy.spawner_minecart.filled.custom", stack.getName(), Registry.ENTITY_TYPE.get(mobSpawnerBlockEntity.logic.getEntityId()).getName()).formatted(Formatting.RESET));
                         } else {
-                            spawnerMinecart.setCustomName(
-                                    new TranslatableText("item.cart-copy.spawner_minecart.filled",
-                                            Registry.ENTITY_TYPE.get(mobSpawnerBlockEntity.logic.getEntityId()).getName())
-                                            .formatted(Formatting.RESET));
+                            spawnerMinecart.setCustomName(new TranslatableText("item.cart-copy.spawner_minecart.filled", Registry.ENTITY_TYPE.get(mobSpawnerBlockEntity.logic.getEntityId()).getName()).formatted(Formatting.RESET));
                         }
 
                         player.inventory.insertStack(spawnerMinecart);
@@ -426,18 +415,17 @@ public abstract class MinecartItemMixin extends Item {
                     ChestMinecartEntity chestMinecart = (ChestMinecartEntity) abstractMinecartEntity;
 
                     NbtCompound nbt = stack.getTag();
-                    if (nbt != null)
-                        if (nbt.getList("Items", 10) != null) {
-                            NbtList nbtList = nbt.getList("Items", 10);
-                            for (int i = 0; i < nbtList.size(); ++i) {
-                                NbtCompound nbtCompound = nbtList.getCompound(i);
-                                int j = nbtCompound.getByte("Slot") & 255;
-                                //noinspection ConstantConditions
-                                if (j >= 0 && j < chestMinecart.size()) {
-                                    chestMinecart.setStack(j, ItemStack.fromNbt(nbtCompound));
-                                }
+                    if (nbt != null) if (nbt.getList("Items", 10) != null) {
+                        NbtList nbtList = nbt.getList("Items", 10);
+                        for (int i = 0; i < nbtList.size(); ++i) {
+                            NbtCompound nbtCompound = nbtList.getCompound(i);
+                            int j = nbtCompound.getByte("Slot") & 255;
+                            //noinspection ConstantConditions
+                            if (j >= 0 && j < chestMinecart.size()) {
+                                chestMinecart.setStack(j, ItemStack.fromNbt(nbtCompound));
                             }
                         }
+                    }
 
                     if (stack.hasCustomName()) chestMinecart.setCustomName(stack.getName());
 

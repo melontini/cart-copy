@@ -19,7 +19,7 @@ public class CartCopy implements ModInitializer {
 
 
     /**
-     * This is here for the sake of compat with mods that edit max fuel int of minecart furnaces.
+     * This is here for the sake of compat with mods that edit max fuel int of furnace minecarts.
      */
     public static final GameRules.Key<GameRules.IntRule> MAX_FURNACE_FUEL =
             GameRuleRegistry.register("CartCopyMaxFurnaceMinecartFuel", GameRules.Category.MISC, GameRuleFactory.createIntRule(32000));
