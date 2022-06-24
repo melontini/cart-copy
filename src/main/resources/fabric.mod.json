@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "cart-copy",
+  "version": "${version}",
+  "name": "Cart Copy",
+  "description": "",
+  "authors": [
+    "melontini"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/cart-copy/icon.png",
+  "environment": "*",
+  "accessWidener" : "cart-copy.accesswidener",
+  "entrypoints": {
+    "client": [
+      "me.melontini.cartcopy.client.CartCopyClient"
+    ],
+    "main": [
+      "me.melontini.cartcopy.CartCopy"
+    ]
+  },
+  "mixins": [
+    "cart-copy.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "fabric": "*",
+    "minecraft": "1.16.5"
+  }
+}

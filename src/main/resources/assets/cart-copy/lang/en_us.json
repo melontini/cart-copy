@@ -1,0 +1,5 @@
+{
+  "item.cart-copy.spawner_minecart": "Spawner Minecart",
+  "item.cart-copy.spawner_minecart.filled": "Spawner Minecart with %s",
+  "item.cart-copy.spawner_minecart.filled.custom": "%s with %s"
+}
