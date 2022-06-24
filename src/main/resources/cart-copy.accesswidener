@@ -2,9 +2,10 @@ accessWidener	v1	named
 ##I love my accessWidener <3
 accessible field net/minecraft/entity/vehicle/SpawnerMinecartEntity logic Lnet/minecraft/world/MobSpawnerLogic;
 accessible field net/minecraft/entity/vehicle/FurnaceMinecartEntity fuel I
+accessible field net/minecraft/entity/player/PlayerEntity inventory Lnet/minecraft/entity/player/PlayerInventory;
 accessible field net/minecraft/block/entity/MobSpawnerBlockEntity logic Lnet/minecraft/world/MobSpawnerLogic;
 accessible field net/minecraft/block/entity/ChestBlockEntity inventory Lnet/minecraft/util/collection/DefaultedList;
 accessible field net/minecraft/block/entity/HopperBlockEntity inventory Lnet/minecraft/util/collection/DefaultedList;
 accessible field net/minecraft/block/entity/AbstractFurnaceBlockEntity burnTime I
 accessible field net/minecraft/item/MinecartItem type Lnet/minecraft/entity/vehicle/AbstractMinecartEntity$Type;
-accessible method net/minecraft/world/MobSpawnerLogic getEntityId ()Lnet/minecraft/util/Identifier;
+accessible method net/minecraft/world/MobSpawnerLogic getEntityId (Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/Identifier;
