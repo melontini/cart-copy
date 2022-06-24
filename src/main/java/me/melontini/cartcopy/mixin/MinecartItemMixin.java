@@ -23,7 +23,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -374,9 +374,9 @@ public abstract class MinecartItemMixin extends Item {
                         spawnerMinecart.setNbt(nbtCompound);
 
                         if (stack.hasCustomName()) {
-                            spawnerMinecart.setCustomName(new TranslatableText("item.cart-copy.spawner_minecart.filled.custom", stack.getName(), Registry.ENTITY_TYPE.get(getEntityId(mobSpawnerBlockEntity)).getName()).formatted(Formatting.RESET));
+                            spawnerMinecart.setCustomName(Text.translatable("item.cart-copy.spawner_minecart.filled.custom", stack.getName(), Registry.ENTITY_TYPE.get(getEntityId(mobSpawnerBlockEntity)).getName()).formatted(Formatting.RESET));
                         } else {
-                            spawnerMinecart.setCustomName(new TranslatableText("item.cart-copy.spawner_minecart.filled", Registry.ENTITY_TYPE.get(getEntityId(mobSpawnerBlockEntity)).getName()).formatted(Formatting.RESET));
+                            spawnerMinecart.setCustomName(Text.translatable("item.cart-copy.spawner_minecart.filled", Registry.ENTITY_TYPE.get(getEntityId(mobSpawnerBlockEntity)).getName()).formatted(Formatting.RESET));
                         }
 
                         player.inventory.insertStack(spawnerMinecart);
