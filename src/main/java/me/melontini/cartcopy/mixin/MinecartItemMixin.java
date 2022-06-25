@@ -404,37 +404,6 @@ public abstract class MinecartItemMixin extends Item {
                 }
                 cir.setReturnValue(ActionResult.success(world.isClient));
             }
-            if (stack.getItem() == Items.CHEST_MINECART) {
-                if (!world.isClient) {
-                    RailShape railShape = state.getBlock() instanceof AbstractRailBlock ? state.get(((AbstractRailBlock) state.getBlock()).getShapeProperty()) : RailShape.NORTH_SOUTH;
-                    double d = 0.0;
-                    if (railShape.isAscending()) d = 0.5;
-
-
-                    AbstractMinecartEntity abstractMinecartEntity = AbstractMinecartEntity.create(world, (double) pos.getX() + 0.5, (double) pos.getY() + 0.0625 + d, (double) pos.getZ() + 0.5, this.type);
-                    ChestMinecartEntity chestMinecart = (ChestMinecartEntity) abstractMinecartEntity;
-
-                    NbtCompound nbt = stack.getTag();
-                    if (nbt != null) if (nbt.getList("Items", 10) != null) {
-                        NbtList nbtList = nbt.getList("Items", 10);
-                        for (int i = 0; i < nbtList.size(); ++i) {
-                            NbtCompound nbtCompound = nbtList.getCompound(i);
-                            int j = nbtCompound.getByte("Slot") & 255;
-                            //noinspection ConstantConditions
-                            if (j >= 0 && j < chestMinecart.size()) {
-                                chestMinecart.setStack(j, ItemStack.fromNbt(nbtCompound));
-                            }
-                        }
-                    }
-
-                    if (stack.hasCustomName()) chestMinecart.setCustomName(stack.getName());
-
-                    world.spawnEntity(chestMinecart);
-                }
-
-                if (!player.isCreative()) stack.decrement(1);
-                cir.setReturnValue(ActionResult.success(world.isClient));
-            }
             if (state.isOf(Blocks.HOPPER) && stack.getItem() == Items.MINECART) {
                 if (!world.isClient) {
                     HopperBlockEntity hopperBlockEntity = (HopperBlockEntity) world.getBlockEntity(pos);
