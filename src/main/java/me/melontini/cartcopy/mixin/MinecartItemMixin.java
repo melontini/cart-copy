@@ -1,6 +1,5 @@
 package me.melontini.cartcopy.mixin;
 
-import io.netty.util.internal.StringUtil;
 import me.melontini.cartcopy.CartCopy;
 import net.minecraft.block.AbstractRailBlock;
 import net.minecraft.block.BlockState;
@@ -22,31 +21,21 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.tag.BlockTags;
-import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.InvalidIdentifierException;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.MobSpawnerLogic;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.Objects;
 
 @Mixin(MinecartItem.class)
 public abstract class MinecartItemMixin extends Item {
@@ -226,7 +215,6 @@ public abstract class MinecartItemMixin extends Item {
             pointer.getWorld().syncWorldEvent(1000, pointer.getPos(), 0);
         }
     };
-    private static final Logger LOGGER = LogManager.getLogger();
     @Shadow
     @Final
     public AbstractMinecartEntity.Type type;
@@ -370,13 +358,13 @@ public abstract class MinecartItemMixin extends Item {
 
                         NbtCompound nbtCompound = new NbtCompound();
                         assert mobSpawnerBlockEntity != null : "Somehow, MobSpawnerBlockEntity was null!";
-                        nbtCompound.putString("Entity", String.valueOf(getEntityId(mobSpawnerBlockEntity)));
+                        nbtCompound.putString("Entity", String.valueOf(mobSpawnerBlockEntity.logic.getEntityId(world, pos)));
                         spawnerMinecart.setNbt(nbtCompound);
 
                         if (stack.hasCustomName()) {
-                            spawnerMinecart.setCustomName(new TranslatableText("item.cart-copy.spawner_minecart.filled.custom", stack.getName(), Registry.ENTITY_TYPE.get(getEntityId(mobSpawnerBlockEntity)).getName()).formatted(Formatting.RESET));
+                            spawnerMinecart.setCustomName(new TranslatableText("item.cart-copy.spawner_minecart.filled.custom", stack.getName(), Registry.ENTITY_TYPE.get(mobSpawnerBlockEntity.logic.getEntityId(world, pos)).getName()).formatted(Formatting.RESET));
                         } else {
-                            spawnerMinecart.setCustomName(new TranslatableText("item.cart-copy.spawner_minecart.filled", Registry.ENTITY_TYPE.get(getEntityId(mobSpawnerBlockEntity)).getName()).formatted(Formatting.RESET));
+                            spawnerMinecart.setCustomName(new TranslatableText("item.cart-copy.spawner_minecart.filled", Registry.ENTITY_TYPE.get(mobSpawnerBlockEntity.logic.getEntityId(world, pos)).getName()).formatted(Formatting.RESET));
                         }
 
                         player.inventory.insertStack(spawnerMinecart);
@@ -443,18 +431,6 @@ public abstract class MinecartItemMixin extends Item {
                 }
                 cir.setReturnValue(ActionResult.success(world.isClient));
             }
-        }
-    }
-    @Nullable
-    private Identifier getEntityId(MobSpawnerBlockEntity mobSpawnerBlockEntity) {
-        String string = mobSpawnerBlockEntity.logic.spawnEntry.getNbt().getString("id");
-
-        try {
-            return StringUtils.isEmpty(string) ? null : new Identifier(string);
-        } catch (InvalidIdentifierException var4) {
-            BlockPos blockPos = mobSpawnerBlockEntity.getPos();
-            LOGGER.warn("Invalid entity id '{}' at spawner {}:[{},{},{}]", string, Objects.requireNonNull(mobSpawnerBlockEntity.getWorld()).getRegistryKey().getValue(), blockPos.getX(), blockPos.getY(), blockPos.getZ());
-            return null;
         }
     }
 }
